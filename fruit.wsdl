@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions name="FruitService" targetNamespace="http://www.fruit.com/genre"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.fruit.com/genre">
+
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import schemaLocation="fruit.xsd" namespace="http://www.fruit.com/genre"></xsd:import>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="fruitReq">
+		<wsdl:part name="parameter" element="tns:fruitRequest" />
+	</wsdl:message>
+	<wsdl:message name="fruitRes">
+		<wsdl:part name="parameter" element="tns:fruitResponse" />
+	</wsdl:message>
+	<wsdl:portType name="fruitServiceProvider">
+		<wsdl:operation name="getFruits">
+			<wsdl:input message="tns:fruitReq" />
+			<wsdl:output message="tns:fruitRes" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="fruitServiceProviderBinding" type="tns:fruitServiceProvider">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getFruits">
+			<soap:operation soapAction="http://www.fruit.com/genre/getFruits" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="fruitServiceProviderService">
+		<wsdl:port name="fruitServiceProviderPort" binding="tns:fruitServiceProviderBinding">
+			<soap:address location="http://localhost:29273/fruit-store/fruitService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

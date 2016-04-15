@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.fruit.com/genre"
+	xmlns:tns="http://www.fruit.com/genre" elementFormDefault="qualified">
+
+	<element name="fruitRequest" type="tns:Fruit" />
+	<element name="fruitResponse" type="string" />
+
+	<complexType name="Fruit">
+		<sequence>
+			<element name="name" type="string" />
+			<element name="size" type="float" />
+			<element name="type" type="string" />
+			<element name="quantity" type="int" />
+			<element name="photo" type="base64Binary" />
+		</sequence>
+	</complexType>
+</schema>
